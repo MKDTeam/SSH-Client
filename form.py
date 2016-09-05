@@ -11,6 +11,7 @@ from PyQt4 import QtCore, QtGui
 ############################################
 import paramiko
 import sys
+#Подключаем необходимые модули (Основные GUI виджеты находятся в библиотеке QtGui)
 app = QtGui.QApplication(sys.argv)
 ############################################
 
@@ -31,24 +32,40 @@ except AttributeError:
 class Ui_MainWindow(object):
 
     ############################################
+    #SSHClient – это основной класс, который нужен чтобы подключаться и работать удаленно. Он дает сессию для дальнейшей работы
     client = paramiko.SSHClient()
 
+    #Функция, содержащая в себе данные необходимые для подлючения
+    #self.lineEdit_x.text() содержит данные введенные пользователем
     def refresh_data(self):
         self.host = '192.168.1.42'#self.lineEdit_host.text()
         self.user = 'dmitry'#self.lineEdit_user.text()
         self.password = '123321'#self.lineEdit_password.text()
         self.port = 22#int(self.lineEdit_port.text())
 
+    #Функция, производящая подключение к серверу по полученным данным
     def connect(self):
         self.refresh_data()
+        #Добавляем ключ сервера в список известных хостов — файл .ssh/known_hosts
         self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        #Соединение с сервером
         self.client.connect(hostname = self.host, username = self.user, password = self.password, port = self.port)
-    
+
+    #Функция, отправляющая команды на сервер
     def send_command(self):
+        #Строка client.exec_command() — выполняет команду на удаленном сервере
+        #plainTextEdit_input.toPlainText() содержит команду введенную пользователем в UI интерфейсе
+        #Потоки ввода-вывода программы возврашщаются в файлообразные обьекты — stdin, stdout, stderr
+        #stdin - поток ввода данных
+        #stdout - стандартный поток вывода данных
+        #stderr - поток вывода ошибок (если программа не смогла сделать все как надо — она пишет  в этот поток)
         stdin, stdout, stderr = self.client.exec_command(self.plainTextEdit_input.toPlainText())
         self.data = stdout.read() + stderr.read()
+        #Вывод полученных данных data в UI интерфейс
+        #Т.к. данные получаем в виде байтов, необходимо их декодировать с помощью data.decode('utf-8')
         self.plainTextEdit_output.setPlainText(self.data.decode('utf-8'))
 
+    #Функция отключения соединения с сервером
     def disconnect(self):
         self.client.close()
     ############################################
@@ -160,6 +177,7 @@ class Ui_MainWindow(object):
         self.pushButton_disconnect.setText(_translate("MainWindow", "Отключится", None))
 
 ############################################
+#Запуск главного окна приложения
 window = QtGui.QMainWindow()
 content = Ui_MainWindow()
 content.setupUi(window)
