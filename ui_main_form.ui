@@ -2,13 +2,21 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>302</width>
+    <height>589</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>SSH Клиент</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
     <item row="0" column="0">
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="groupBox_options">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -16,13 +24,10 @@
        </sizepolicy>
       </property>
       <property name="autoFillBackground">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="title">
        <string>Параметры подключения</string>
-      </property>
-      <property name="flat">
-       <bool>false</bool>
       </property>
       <layout class="QFormLayout" name="formLayout_2">
        <item row="0" column="0">
@@ -74,6 +79,9 @@
     </item>
     <item row="7" column="0">
      <widget class="QGroupBox" name="groupBox_output">
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="title">
        <string>Вывод</string>
       </property>
@@ -115,6 +123,9 @@
         <height>100</height>
        </size>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="title">
        <string>Консоль ввода команд</string>
       </property>
@@ -140,7 +151,7 @@
      </widget>
     </item>
     <item row="2" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_options">
       <item>
        <widget class="QPushButton" name="pushButton_connect">
         <property name="enabled">
@@ -166,22 +177,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton_connect</sender>
-   <signal>clicked()</signal>
-   <receiver>pushButton_connect</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>190</x>
-     <y>188</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>251</x>
-     <y>180</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_output</sender>
    <signal>clicked()</signal>
    <receiver>plainTextEdit_output</receiver>
@@ -189,43 +184,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>291</x>
-     <y>508</y>
+     <y>551</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
      <y>464</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_disconnect</sender>
-   <signal>clicked()</signal>
-   <receiver>pushButton_disconnect</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>521</x>
-     <y>181</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>421</x>
-     <y>180</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>pushButton_input</sender>
-   <signal>clicked()</signal>
-   <receiver>pushButton_input</receiver>
-   <slot>hide()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>372</x>
-     <y>343</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>259</x>
-     <y>344</y>
     </hint>
    </hints>
   </connection>

@@ -1,2 +1,2 @@
-C:\Python34\python.exe form.py build
+C:\Python34\python.exe main.py build
 Pause

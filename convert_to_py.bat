@@ -1,2 +1,2 @@
-pyuic4 form.ui -o form.py
+pyuic4 ui_main_form.ui -o ui_main_form.py
 Pause
