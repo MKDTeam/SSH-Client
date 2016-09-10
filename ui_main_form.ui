@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>353</width>
-    <height>531</height>
+    <width>565</width>
+    <height>554</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,7 +135,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>35</height>
+           <height>30</height>
           </size>
          </property>
         </widget>
@@ -171,85 +171,6 @@
       </item>
      </layout>
     </item>
-    <item row="3" column="0">
-     <widget class="QGroupBox" name="groupBox_way">
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="autoFillBackground">
-       <bool>true</bool>
-      </property>
-      <property name="title">
-       <string>Выполнить действие</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_5">
-       <item row="0" column="0">
-        <widget class="QLabel" name="label_way">
-         <property name="text">
-          <string>Файл</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1" colspan="2">
-        <widget class="QLineEdit" name="lineEdit_way"/>
-       </item>
-       <item row="0" column="3">
-        <widget class="QPushButton" name="pushButton_way">
-         <property name="text">
-          <string>Обзор</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_act">
-         <property name="text">
-          <string>Действие</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1">
-        <widget class="QComboBox" name="comboBox_act">
-         <property name="minimumSize">
-          <size>
-           <width>86</width>
-           <height>20</height>
-          </size>
-         </property>
-         <item>
-          <property name="text">
-           <string>Копировать</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Удалить</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Создать</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>Найти</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="pushButton_per">
-         <property name="text">
-          <string>Выполнить</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
    </layout>
   </widget>
  </widget>
@@ -262,8 +183,8 @@
    <slot>clear()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>291</x>
-     <y>551</y>
+     <x>314</x>
+     <y>530</y>
     </hint>
     <hint type="destinationlabel">
      <x>295</x>
