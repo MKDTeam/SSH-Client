@@ -1,7 +1,8 @@
-import sys
-from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QWidget, QTreeWidget, QTreeWidgetItem
+from  modules.ui_class.ui_FileTree import Ui_file_manager
 
-class FileTreeWidget(QtGui.QTreeWidget):
+class FileTreeWidget(QTreeWidget):
     """Виджет дерева файлов основаный на QTreeWidget"""
     def __init__(self, arg = None):
         super().__init__(arg)
@@ -9,7 +10,13 @@ class FileTreeWidget(QtGui.QTreeWidget):
         self.separator = '/'    
         self.root_items = [] #список содержащий корневые каталоги
         self.column_path = 0 #колонка таблицы в которой указан путь
-        self.column_type = 1 #колонка таблицы в которой указан путь
+        self.column_type = 1 #колонка таблицы в которой указан тип файла
+        
+        self.setColumnCount(2)
+        self.setHeaderLabels(['Имя файла', 'Тип файла'])
+        self.header().setResizeMode(1)
+        self.setSortingEnabled(True)
+        self.setExpandsOnDoubleClick(False)
 
     def setSeparator(self, char):
         """Установка - self.separator - разделителя в пути к файлу"""
@@ -43,13 +50,13 @@ class FileTreeWidget(QtGui.QTreeWidget):
                 break
 
         if current_item == None: #корневого элемента не существует
-            current_item = QtGui.QTreeWidgetItem(self)
+            current_item = QTreeWidgetItem(self)
             self.root_items.append(current_item)
             #print([s.text(0) for s in self.root_items])
             for directory in directories:
                 if directory != directories[-1]:
                     current_item.setText(self.column_path, directory)
-                    current_item = QtGui.QTreeWidgetItem(current_item)
+                    current_item = QTreeWidgetItem(current_item)
                 else:
                     current_item.setText(self.column_path, directory[0:-1])
         else:
@@ -67,7 +74,7 @@ class FileTreeWidget(QtGui.QTreeWidget):
                         break
 
                 if current_item.text(self.column_path) != directory: 
-                    current_item = QtGui.QTreeWidgetItem(current_item)
+                    current_item = QTreeWidgetItem(current_item)
                     current_item.setText(self.column_path, directory)
                 if current_item.text(self.column_path) == directories[-1]:
                     current_item.setText(self.column_path, directories[-1][0:-1])
@@ -107,25 +114,41 @@ class FileTreeWidget(QtGui.QTreeWidget):
                 
         return False
 
-#app = QtGui.QApplication(sys.argv)
-#
-#base_widget = QtGui.QWidget()
-#base_widget.resize(500, 800)
-#base_widget.setWindowTitle("Тестовое окно")
-#
-##
-#tree = FileTreeWidget(base_widget)
-#print("///////////////////////////////////////////////////////")
-#tree.newTreeItem("/bin/test/project/example/1/run.exe")
-#tree.newTreeItem("/var/test/project/example/1/run.exe")
-#tree.newTreeBranch("/var/", list("example"))
-#print(tree.isElementExists("/var/test/project/example/1/"))
-#print("///////////////////////////////////////////////////////")
-##
-#
-#grid_layout = QtGui.QGridLayout(base_widget)
-#grid_layout.addWidget(tree)
-#
-#base_widget.show()
-#
-#sys.exit(app.exec_())
+class FileManager(Ui_file_manager):
+    """Графический менеджер работы с файлами"""
+    def __init__(self):
+        self.window = QWidget()
+        self.setupUi(self.window)
+
+        self.file_tree = FileTreeWidget()
+        self.file_tree.setSeparator('/')
+
+        self.treeWidget.addWidget(self.file_tree)
+
+        self.file_tree.itemClicked.connect(self.treeItemActivated)
+
+        #QtCore.QObject.connect(self.file_tree , QtCore.SIGNAL("itemClicked(QTreeWidgetItem*,int)"), self.treeItemActivated)
+        
+    def start(self, client):
+        self.client = client
+        self.window.show()
+        if not self.file_tree.topLevelItem(0):
+            self.file_tree.newTreeBranch('/', self.getListOfDirectory('/'))
+            self.file_tree.topLevelItem(0).setExpanded(True)
+
+
+    def getListOfDirectory(self, path):
+        """Возращает список файлов по заданому пути"""
+        stdin, stdout, stderr = self.client.exec_command('ls -aF ' + path)
+        data = stdout.read().decode('utf-8')
+        array = data.split('\n')
+        array = array[2:-1]
+        return array
+
+    def treeItemActivated(self, tree_item, column):
+        """Вызывается при раскрытии ветви"""
+        tree_item.setExpanded(False if tree_item.isExpanded() else True)
+
+        path = self.file_tree.treeItemPath(tree_item)
+        self.lineEdit_path.setText(path)
+        self.file_tree.newTreeBranch(path, self.getListOfDirectory(path))
