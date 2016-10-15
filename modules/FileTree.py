@@ -1,6 +1,6 @@
-from PyQt4.QtCore import Qt
-from PyQt4.QtGui import QWidget, QTreeWidget, QTreeWidgetItem
-from  modules.ui_class.ui_FileTree import Ui_file_manager
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QWidget, QTreeWidget, QTreeWidgetItem
+from modules.ui_class.ui_FileTree import Ui_file_manager
 
 class FileTreeWidget(QTreeWidget):
     """Виджет дерева файлов основаный на QTreeWidget"""
@@ -14,7 +14,7 @@ class FileTreeWidget(QTreeWidget):
         
         self.setColumnCount(2)
         self.setHeaderLabels(['Имя файла', 'Тип файла'])
-        self.header().setResizeMode(1)
+        #self.header().setResizeMode(1)
         self.setSortingEnabled(True)
         self.setExpandsOnDoubleClick(False)
 

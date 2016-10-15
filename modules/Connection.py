@@ -1,6 +1,8 @@
 import paramiko
 from modules.ui_class.ui_Connection import Ui_Dialog_connection
-from PyQt4.QtGui import QWidget
+from modules.Exceptions import *
+from PyQt5.QtWidgets import QWidget
+from PyQt5.QtCore import pyqtSignal, QObject
 #import ui_Connection
 
 class Settings:
@@ -13,12 +15,18 @@ class Settings:
 			self.data[key] = value
 		
 	def __getitem__(self, key):
-		return self.data[key]
+		if key in self.data:
+			return self.data[key]
 
 
-class ConnectionManager:
+class ConnectionManager(QObject):
 	"""Создание SSH тунеля и отображение окна настроек соеденения"""
+	signalOnConnect = pyqtSignal() #Сигнал отправляется при успешном подключении через SSH
+	#signalOnDisconnect = pyqtSignal() #Сигнал отправляется при потере подключения
+
 	def __init__(self):
+		super().__init__()
+
 		self.window = QWidget()
 		self.ui = Ui_Dialog_connection()
 		self.ui.setupUi(self.window)
@@ -35,13 +43,38 @@ class ConnectionManager:
 		self.ui.lineEdit_terminal_type.setText(self.settings['terminal_type'])
 
 	def connect(self):
-		self.client.connect(self.ui.lineEdit_host.text(), int(self.ui.lineEdit_port.text()), self.ui.lineEdit_user.text(), self.ui.lineEdit_secret.text())
-		#return(self.client)
+		"""Устанавливает подключение. Если подключение установленно посылает сигнал signalOnConnect"""
+		try:
+			self.client.connect(hostname = self.ui.lineEdit_host.text(), 
+								port = int(self.ui.lineEdit_port.text()), 
+								username = self.ui.lineEdit_user.text(), 
+								password = self.ui.lineEdit_secret.text())
 
-	def show_ui(self):
+		except paramiko.ssh_exception.BadHostKeyException:
+			BadHostKeyError().show()
+		except paramiko.ssh_exception.AuthenticationException:
+			AuthenticationError().show()
+		except paramiko.ssh_exception.SSHException:
+			SSHConnectionError().show()
+
+		except OSError as error:
+			if error.errno == 8:
+				HostError().show()
+			elif type(error) == paramiko.ssh_exception.NoValidConnectionsError:
+				PortError().show()
+			else:
+				print('OSError (Errno:', error.errno, ')\n', type(error))
+				
+		except Exception as error:
+			print(type(error),'\n', error)
+
+		else:
+			self.signalOnConnect.emit()
+
+	def show(self):
 		self.window.show()
 
-	def hide_ui(self):
+	def hide(self):
 		self.window.hide()
 
 	def set_buttons_events(self, button_load_func = None, button_connect_func = None, button_exit_func = None):

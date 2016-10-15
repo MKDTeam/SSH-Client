@@ -1,5 +1,5 @@
-host = 192.168.1.42
-user = dmitry
+host = localhost
+user = Dmitry
 secret = 123321
 port = 22
 terminal_type = xfce4-terminal

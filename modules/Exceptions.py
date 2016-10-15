@@ -1,34 +1,48 @@
+from PyQt5.QtWidgets import QMessageBox
+
 class Error(Exception):
 	"""Базовый класс для исключений в этом модуле."""
+	def __init__(self, message):
+		self.message = message
+		self.widget = QMessageBox()
+		self.widget.setText(message)
+
+	def __str__(self):
+		return self.message
+		
+	def show(self):
+		self.widget.exec_()
+ 
+#--------------------------------------------------------------------
+
+class SSHConnectionError(Error):
+	"""Исключение возникающее при работе с SSH соединением (кроме работы с файлами)."""
+	def __init__(self, additional_message):
+		super().__init__("Ошибка установки SSH подключения")
+		self.widget.setInformativeText(additional_message)
+
+class HostError(SSHConnectionError):
+	"""Ошибка подключения к хосту"""
+	def __init__(self):
+		super().__init__("Не удается открыть соединение к указанному хосту.")
+
+class PortError(SSHConnectionError):
+	"""Ошибка подключения к порту"""
+	def __init__(self):
+		super().__init__("Соединение с хостом было установленно, но попытка подключится провалилась. Не получен ответ от SSH сервера по указанному порту.")
+		
+class AuthenticationError(SSHConnectionError):
+	"""Ошибка аутентификации"""
+	def __init__(self):
+		super().__init__("Некорректное имя пользователя или пароль.")
+
+class BadHostKeyError(SSHConnectionError):
+	"""Ошибка соединения с сервером - ошибочные ключи"""
+	def __init__(self):
+		super().__init__("Ключи сервера не являются подлинными.")
+
+#--------------------------------------------------------------------		
+ 
+class SFTPConnectionError(Error):
+	"""Исключение возникающее при работе с SFTP."""
 	pass
- 
-class ModulesError(Error):
-	"""Exception raised for errors in the input.
-	Исключение возбуждается для ошибок в вводе.
- 
-	Attributes:
-		expression -- input expression in which the error occurred
-				   -- входное выражение, в котором произошла ошибка
-		message -- explanation of the error
-				-- объяснение ошибки
-	"""
-	def __init__(self, expression, message):
-		self.expression = expression
-		self.message = message
- 
-class TransitionError(Error):
-	"""Raised when an operation attempts a state transition that's not allowed.
-	Возникает при попытке операции перехода, которая не допускается.
- 
-	Attributes:
-		previous -- state at beginning of transition
-				 -- состояние в начале перехода
-		next -- attempted new state
-			 -- нового состояния, к которому пытаются перейти
-		message -- explanation of why the specific transition is not allowed
-				-- объяснение, почему конкретный переход не допускается
-	"""
-	def __init__(self, previous, next, message):
-		self.previous = previous
-		self.next = next
-		self.message = message

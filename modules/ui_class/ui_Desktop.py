@@ -2,62 +2,49 @@
 
 # Form implementation generated from reading ui file 'ui_Desktop.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt5 UI code generator 5.7
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    def _fromUtf8(s):
-        return s
-
-try:
-    _encoding = QtGui.QApplication.UnicodeUTF8
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig, _encoding)
-except AttributeError:
-    def _translate(context, text, disambig):
-        return QtGui.QApplication.translate(context, text, disambig)
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(829, 610)
-        self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
-        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
-        self.gridLayout.setMargin(0)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.declarativeView = QtDeclarative.QDeclarativeView(self.centralwidget)
-        self.declarativeView.setObjectName(_fromUtf8("declarativeView"))
-        self.gridLayout.addWidget(self.declarativeView, 0, 0, 1, 1)
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(558, 375)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtWidgets.QGridLayout(self.centralwidget)
+        self.gridLayout.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout.setObjectName("gridLayout")
+        self.quickWidget = QtQuickWidgets.QQuickWidget(self.centralwidget)
+        self.quickWidget.setResizeMode(QtQuickWidgets.QQuickWidget.SizeRootObjectToView)
+        self.quickWidget.setObjectName("quickWidget")
+        self.gridLayout.addWidget(self.quickWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 829, 26))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
-        self.menu = QtGui.QMenu(self.menubar)
-        self.menu.setObjectName(_fromUtf8("menu"))
-        self.help = QtGui.QMenu(self.menubar)
-        self.help.setObjectName(_fromUtf8("help"))
-        self.tools = QtGui.QMenu(self.menubar)
-        self.tools.setObjectName(_fromUtf8("tools"))
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 558, 22))
+        self.menubar.setObjectName("menubar")
+        self.menu = QtWidgets.QMenu(self.menubar)
+        self.menu.setObjectName("menu")
+        self.help = QtWidgets.QMenu(self.menubar)
+        self.help.setObjectName("help")
+        self.tools = QtWidgets.QMenu(self.menubar)
+        self.tools.setObjectName("tools")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
-        self.statusbar.setObjectName(_fromUtf8("statusbar"))
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
-        self.action_new_connection = QtGui.QAction(MainWindow)
-        self.action_new_connection.setObjectName(_fromUtf8("action_new_connection"))
-        self.action_exit = QtGui.QAction(MainWindow)
-        self.action_exit.setObjectName(_fromUtf8("action_exit"))
-        self.action_terminal = QtGui.QAction(MainWindow)
-        self.action_terminal.setObjectName(_fromUtf8("action_terminal"))
-        self.action_file_manager = QtGui.QAction(MainWindow)
-        self.action_file_manager.setObjectName(_fromUtf8("action_file_manager"))
-        self.action_settings = QtGui.QAction(MainWindow)
-        self.action_settings.setObjectName(_fromUtf8("action_settings"))
+        self.action_new_connection = QtWidgets.QAction(MainWindow)
+        self.action_new_connection.setObjectName("action_new_connection")
+        self.action_exit = QtWidgets.QAction(MainWindow)
+        self.action_exit.setObjectName("action_exit")
+        self.action_terminal = QtWidgets.QAction(MainWindow)
+        self.action_terminal.setObjectName("action_terminal")
+        self.action_file_manager = QtWidgets.QAction(MainWindow)
+        self.action_file_manager.setObjectName("action_file_manager")
+        self.action_settings = QtWidgets.QAction(MainWindow)
+        self.action_settings.setObjectName("action_settings")
         self.menu.addAction(self.action_new_connection)
         self.menu.addAction(self.action_settings)
         self.menu.addSeparator()
@@ -72,14 +59,15 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "Менеджер удаленного управления сервером", None))
-        self.menu.setTitle(_translate("MainWindow", "Меню", None))
-        self.help.setTitle(_translate("MainWindow", "Справка", None))
-        self.tools.setTitle(_translate("MainWindow", "Инструменты", None))
-        self.action_new_connection.setText(_translate("MainWindow", "Новое соединение", None))
-        self.action_exit.setText(_translate("MainWindow", "Выход", None))
-        self.action_terminal.setText(_translate("MainWindow", "Удаленный терминал", None))
-        self.action_file_manager.setText(_translate("MainWindow", "Файловый менеджер", None))
-        self.action_settings.setText(_translate("MainWindow", "Настройки", None))
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Менеджер удаленного управления сервером"))
+        self.menu.setTitle(_translate("MainWindow", "Меню"))
+        self.help.setTitle(_translate("MainWindow", "Справка"))
+        self.tools.setTitle(_translate("MainWindow", "Инструменты"))
+        self.action_new_connection.setText(_translate("MainWindow", "Новое соединение"))
+        self.action_exit.setText(_translate("MainWindow", "Выход"))
+        self.action_terminal.setText(_translate("MainWindow", "Удаленный терминал"))
+        self.action_file_manager.setText(_translate("MainWindow", "Файловый менеджер"))
+        self.action_settings.setText(_translate("MainWindow", "Настройки"))
 
-from PyQt4 import QtDeclarative
+from PyQt5 import QtQuickWidgets

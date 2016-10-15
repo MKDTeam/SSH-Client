@@ -1,5 +1,6 @@
-from PyQt4.QtGui import QFont, QTextCursor, QFontMetrics, QKeyEvent, QPlainTextEdit
-from PyQt4.QtCore import Qt, QEvent, QTimer
+from PyQt5.QtGui import QFont, QTextCursor, QFontMetrics, QKeyEvent
+from PyQt5.QtWidgets import QPlainTextEdit
+from PyQt5.QtCore import Qt, QEvent, QTimer
 
 settings = {'time_console_update':100,  # ms            - временной промежуток через который проверяется поступление данных с сервера
             'connection_speed': 128     # kilobyte/s    - скорость поступления данных (исходя из них выбирается размер буфера)

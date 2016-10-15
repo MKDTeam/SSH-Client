@@ -1,5 +1,5 @@
 import sys
-from PyQt4.QtGui import QApplication
+from PyQt5.QtWidgets import QApplication
 
 application = QApplication(sys.argv)
 
@@ -18,10 +18,14 @@ connection_manager.set_buttons_events(button_load_func = lambda: connection_mana
                                       button_connect_func = lambda: connection_manager.connect(),
                                       button_exit_func  = lambda: application.exit())
 
-desktop.start_terminal(function = lambda: console.start(connection_manager.client))
-desktop.start_file_manager(function = lambda: file_manager.start(connection_manager.client))
+desktop.add_application(name = 'terminal',
+						function = lambda: console.start(connection_manager.client))
 
-connection_manager.set_buttons_events(button_connect_func = lambda: desktop.start())
-connection_manager.show_ui()
+desktop.add_application(name = 'file_manager',
+						function = lambda: file_manager.start(connection_manager.client))
+
+connection_manager.signalOnConnect.connect(desktop.show)
+connection_manager.signalOnConnect.connect(connection_manager.hide)
+connection_manager.show()
 
 sys.exit(application.exec_())

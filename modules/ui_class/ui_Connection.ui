@@ -7,11 +7,11 @@
     <x>0</x>
     <y>0</y>
     <width>513</width>
-    <height>191</height>
+    <height>212</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Система удаленного администрирования сервера</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -96,6 +96,9 @@
         <widget class="QLineEdit" name="lineEdit_port">
          <property name="text">
           <string notr="true">22</string>
+         </property>
+         <property name="maxLength">
+          <number>4</number>
          </property>
         </widget>
        </item>
