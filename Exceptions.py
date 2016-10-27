@@ -43,6 +43,13 @@ class BadHostKeyError(SSHConnectionError):
 
 #--------------------------------------------------------------------		
  
-class SFTPConnectionError(Error):
+class SFTPError(Error):
 	"""Исключение возникающее при работе с SFTP."""
-	pass
+	def __init__(self, additional_message):
+		super().__init__("Операция над файлом не может быть выполнена.")
+		self.widget.setInformativeText(additional_message)
+
+class PermissionDeniedError(SFTPError):
+	"""Ошибка подключения к хосту"""
+	def __init__(self):
+		super().__init__("Доступ к файлу запрещен.")

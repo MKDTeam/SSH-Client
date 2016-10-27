@@ -43,6 +43,7 @@ class Ui_Dialog(object):
         self.label_password.setObjectName("label_password")
         self.horizontalLayout_2.addWidget(self.label_password)
         self.lineEdit_password = QtWidgets.QLineEdit(self.groupBox)
+        self.lineEdit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.lineEdit_password.setObjectName("lineEdit_password")
         self.horizontalLayout_2.addWidget(self.lineEdit_password)
         self.verticalLayout.addLayout(self.horizontalLayout_2)

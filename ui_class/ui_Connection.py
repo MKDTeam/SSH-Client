@@ -8,13 +8,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Dialog_connection(object):
-    def setupUi(self, Dialog_connection):
-        Dialog_connection.setObjectName("Dialog_connection")
-        Dialog_connection.resize(513, 212)
-        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog_connection)
+class Ui_dialog_connection(object):
+    def setupUi(self, dialog_connection):
+        dialog_connection.setObjectName("dialog_connection")
+        dialog_connection.resize(513, 212)
+        self.verticalLayout = QtWidgets.QVBoxLayout(dialog_connection)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.tabWidget_options = QtWidgets.QTabWidget(Dialog_connection)
+        self.tabWidget_options = QtWidgets.QTabWidget(dialog_connection)
         self.tabWidget_options.setObjectName("tabWidget_options")
         self.widget_main_options = QtWidgets.QWidget()
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
@@ -77,32 +77,32 @@ class Ui_Dialog_connection(object):
         self.verticalLayout.addWidget(self.tabWidget_options)
         self.horizontalLayout_buttons = QtWidgets.QHBoxLayout()
         self.horizontalLayout_buttons.setObjectName("horizontalLayout_buttons")
-        self.pushButton_load = QtWidgets.QPushButton(Dialog_connection)
+        self.pushButton_load = QtWidgets.QPushButton(dialog_connection)
         self.pushButton_load.setObjectName("pushButton_load")
         self.horizontalLayout_buttons.addWidget(self.pushButton_load)
-        self.pushButton_connect = QtWidgets.QPushButton(Dialog_connection)
+        self.pushButton_connect = QtWidgets.QPushButton(dialog_connection)
         self.pushButton_connect.setObjectName("pushButton_connect")
         self.horizontalLayout_buttons.addWidget(self.pushButton_connect)
-        self.pushButton_exit = QtWidgets.QPushButton(Dialog_connection)
+        self.pushButton_exit = QtWidgets.QPushButton(dialog_connection)
         self.pushButton_exit.setObjectName("pushButton_exit")
         self.horizontalLayout_buttons.addWidget(self.pushButton_exit)
         self.verticalLayout.addLayout(self.horizontalLayout_buttons)
 
-        self.retranslateUi(Dialog_connection)
+        self.retranslateUi(dialog_connection)
         self.tabWidget_options.setCurrentIndex(0)
-        QtCore.QMetaObject.connectSlotsByName(Dialog_connection)
+        QtCore.QMetaObject.connectSlotsByName(dialog_connection)
 
-    def retranslateUi(self, Dialog_connection):
+    def retranslateUi(self, dialog_connection):
         _translate = QtCore.QCoreApplication.translate
-        Dialog_connection.setWindowTitle(_translate("Dialog_connection", "Система удаленного администрирования сервера"))
-        self.label_host.setText(_translate("Dialog_connection", "Адрес хоста"))
-        self.label_user.setText(_translate("Dialog_connection", "Имя пользователя"))
-        self.label_secret.setText(_translate("Dialog_connection", "Пароль"))
-        self.tabWidget_options.setTabText(self.tabWidget_options.indexOf(self.widget_main_options), _translate("Dialog_connection", "Параметры соеденения"))
-        self.label_port.setText(_translate("Dialog_connection", "Порт"))
-        self.label_terminal_type.setText(_translate("Dialog_connection", "Тип терминала"))
-        self.tabWidget_options.setTabText(self.tabWidget_options.indexOf(self.widget_additional_options), _translate("Dialog_connection", "Дополнительные параметры"))
-        self.pushButton_load.setText(_translate("Dialog_connection", "Загрузить настройки из файла"))
-        self.pushButton_connect.setText(_translate("Dialog_connection", "Подключиться"))
-        self.pushButton_exit.setText(_translate("Dialog_connection", "Выход"))
+        dialog_connection.setWindowTitle(_translate("dialog_connection", "Система удаленного администрирования сервера"))
+        self.label_host.setText(_translate("dialog_connection", "Адрес хоста"))
+        self.label_user.setText(_translate("dialog_connection", "Имя пользователя"))
+        self.label_secret.setText(_translate("dialog_connection", "Пароль"))
+        self.tabWidget_options.setTabText(self.tabWidget_options.indexOf(self.widget_main_options), _translate("dialog_connection", "Параметры соеденения"))
+        self.label_port.setText(_translate("dialog_connection", "Порт"))
+        self.label_terminal_type.setText(_translate("dialog_connection", "Тип терминала"))
+        self.tabWidget_options.setTabText(self.tabWidget_options.indexOf(self.widget_additional_options), _translate("dialog_connection", "Дополнительные параметры"))
+        self.pushButton_load.setText(_translate("dialog_connection", "Загрузить настройки из файла"))
+        self.pushButton_connect.setText(_translate("dialog_connection", "Подключиться"))
+        self.pushButton_exit.setText(_translate("dialog_connection", "Выход"))
 

@@ -1,9 +1,10 @@
 import paramiko
-from modules.ui_class.ui_Connection import Ui_Dialog_connection
-from modules.Exceptions import *
+from ui_class.ui_Connection import Ui_dialog_connection
+from Exceptions import SSHConnectionError, HostError, PortError, AuthenticationError, BadHostKeyError
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import pyqtSignal, QObject
 #import ui_Connection
+
 
 class Settings:
 	"""docstring for Settings"""
@@ -21,20 +22,20 @@ class Settings:
 
 class ConnectionManager(QObject):
 	"""Создание SSH тунеля и отображение окна настроек соеденения"""
-	signalOnConnect = pyqtSignal() #Сигнал отправляется при успешном подключении через SSH
+	signal_onConnect = pyqtSignal() #Сигнал отправляется при успешном подключении через SSH
 	#signalOnDisconnect = pyqtSignal() #Сигнал отправляется при потере подключения
 
 	def __init__(self):
 		super().__init__()
 
 		self.window = QWidget()
-		self.ui = Ui_Dialog_connection()
+		self.ui = Ui_dialog_connection()
 		self.ui.setupUi(self.window)
 
 		self.client = paramiko.SSHClient()
 		self.client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-	def load_settings(self, settings):
+	def loadSettings(self, settings):
 		self.settings = settings
 		self.ui.lineEdit_host.setText(self.settings['host'])
 		self.ui.lineEdit_user.setText(self.settings['user'])
@@ -43,7 +44,7 @@ class ConnectionManager(QObject):
 		self.ui.lineEdit_terminal_type.setText(self.settings['terminal_type'])
 
 	def connect(self):
-		"""Устанавливает подключение. Если подключение установленно посылает сигнал signalOnConnect"""
+		"""Устанавливает подключение. Если подключение установленно посылает сигнал signal_onConnect"""
 		try:
 			self.client.connect(hostname = self.ui.lineEdit_host.text(), 
 								port = int(self.ui.lineEdit_port.text()), 
@@ -69,7 +70,7 @@ class ConnectionManager(QObject):
 			print(type(error),'\n', error)
 
 		else:
-			self.signalOnConnect.emit()
+			self.signal_onConnect.emit()
 
 	def show(self):
 		self.window.show()
@@ -77,7 +78,7 @@ class ConnectionManager(QObject):
 	def hide(self):
 		self.window.hide()
 
-	def set_buttons_events(self, button_load_func = None, button_connect_func = None, button_exit_func = None):
+	def setButtonsEvents(self, button_load_func = None, button_connect_func = None, button_exit_func = None):
 		if button_load_func:
 			self.button_load_func = button_load_func
 			self.ui.pushButton_load.clicked.connect(self.button_load_func)
