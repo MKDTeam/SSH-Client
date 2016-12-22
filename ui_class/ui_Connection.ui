@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>513</width>
+    <width>427</width>
     <height>212</height>
    </rect>
   </property>
@@ -17,19 +17,16 @@
    <item>
     <widget class="QTabWidget" name="tabWidget_options">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="widget_main_options">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
       <attribute name="title">
        <string>Параметры соеденения</string>
       </attribute>
       <layout class="QFormLayout" name="formLayout_3">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label_host">
          <property name="text">
@@ -75,16 +72,13 @@
       </layout>
      </widget>
      <widget class="QWidget" name="widget_additional_options">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
       <attribute name="title">
        <string>Дополнительные параметры</string>
       </attribute>
       <layout class="QFormLayout" name="formLayout_4">
+       <property name="fieldGrowthPolicy">
+        <enum>QFormLayout::ExpandingFieldsGrow</enum>
+       </property>
        <item row="0" column="0">
         <widget class="QLabel" name="label_port">
          <property name="text">
@@ -116,6 +110,20 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_MD5Script">
+         <property name="text">
+          <string>Скрипт расчета MD5</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_MD5Script">
+         <property name="text">
+          <string>find . -type f -maxdepth 1 -perm -o+r -exec md5 {} + | sed 's/MD5 (//;s/)//'</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
@@ -123,9 +131,9 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_buttons">
      <item>
-      <widget class="QPushButton" name="pushButton_load">
+      <widget class="QPushButton" name="pushButton_save">
        <property name="text">
-        <string>Загрузить настройки из файла</string>
+        <string>Сохранить настройки</string>
        </property>
       </widget>
      </item>

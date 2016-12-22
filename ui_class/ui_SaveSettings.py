@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui_LoadSettings.ui'
+# Form implementation generated from reading ui file 'ui_SaveSettings.ui'
 #
 # Created by: PyQt5 UI code generator 5.7
 #
@@ -8,17 +8,17 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_qDialog_load(object):
-    def setupUi(self, qDialog_load):
-        qDialog_load.setObjectName("qDialog_load")
+class Ui_qDialog_save(object):
+    def setupUi(self, qDialog_save):
+        qDialog_save.setObjectName("qDialog_save")
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(qDialog_load.sizePolicy().hasHeightForWidth())
-        qDialog_load.setSizePolicy(sizePolicy)
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(qDialog_load)
+        sizePolicy.setHeightForWidth(qDialog_save.sizePolicy().hasHeightForWidth())
+        qDialog_save.setSizePolicy(sizePolicy)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(qDialog_save)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label_title = QtWidgets.QLabel(qDialog_load)
+        self.label_title = QtWidgets.QLabel(qDialog_save)
         font = QtGui.QFont()
         font.setPointSize(15)
         font.setBold(True)
@@ -26,19 +26,19 @@ class Ui_qDialog_load(object):
         self.label_title.setFont(font)
         self.label_title.setObjectName("label_title")
         self.verticalLayout_2.addWidget(self.label_title)
-        self.label_subtitle = QtWidgets.QLabel(qDialog_load)
+        self.label_subtitle = QtWidgets.QLabel(qDialog_save)
         self.label_subtitle.setObjectName("label_subtitle")
         self.verticalLayout_2.addWidget(self.label_subtitle)
         self.horizontalLayout_1 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_1.setObjectName("horizontalLayout_1")
-        self.pushButton_yes = QtWidgets.QPushButton(qDialog_load)
+        self.pushButton_yes = QtWidgets.QPushButton(qDialog_save)
         self.pushButton_yes.setObjectName("pushButton_yes")
         self.horizontalLayout_1.addWidget(self.pushButton_yes)
-        self.pushButton_no = QtWidgets.QPushButton(qDialog_load)
+        self.pushButton_no = QtWidgets.QPushButton(qDialog_save)
         self.pushButton_no.setObjectName("pushButton_no")
         self.horizontalLayout_1.addWidget(self.pushButton_no)
         self.verticalLayout_2.addLayout(self.horizontalLayout_1)
-        self.groupBox = QtWidgets.QGroupBox(qDialog_load)
+        self.groupBox = QtWidgets.QGroupBox(qDialog_save)
         self.groupBox.setObjectName("groupBox")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.groupBox)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -57,20 +57,21 @@ class Ui_qDialog_load(object):
         self.verticalLayout.addWidget(self.pushButton_confirm)
         self.verticalLayout_2.addWidget(self.groupBox)
 
-        self.retranslateUi(qDialog_load)
+        self.retranslateUi(qDialog_save)
         self.pushButton_yes.clicked.connect(self.groupBox.show)
         self.pushButton_yes.clicked['bool'].connect(self.pushButton_yes.setEnabled)
-        self.pushButton_no.clicked.connect(qDialog_load.close)
+        self.pushButton_no.clicked.connect(qDialog_save.close)
         self.pushButton_yes.clicked.connect(self.lineEdit_password.setFocus)
-        QtCore.QMetaObject.connectSlotsByName(qDialog_load)
+        QtCore.QMetaObject.connectSlotsByName(qDialog_save)
 
-    def retranslateUi(self, qDialog_load):
+    def retranslateUi(self, qDialog_save):
         _translate = QtCore.QCoreApplication.translate
-        qDialog_load.setWindowTitle(_translate("qDialog_load", "Dialog"))
-        self.label_title.setText(_translate("qDialog_load", "Обнаруженны сохраненные настройки."))
-        self.label_subtitle.setText(_translate("qDialog_load", "Желаете загрузить их?"))
-        self.pushButton_yes.setText(_translate("qDialog_load", "Да"))
-        self.pushButton_no.setText(_translate("qDialog_load", "Нет"))
-        self.label_password.setText(_translate("qDialog_load", "Пароль"))
-        self.pushButton_confirm.setText(_translate("qDialog_load", "Потвердить"))
+        qDialog_save.setWindowTitle(_translate("qDialog_save", "Dialog"))
+        self.label_title.setText(_translate("qDialog_save", "Создан новый набор настроек."))
+        self.label_subtitle.setText(_translate("qDialog_save", "Желаете сохранить их?"))
+        self.pushButton_yes.setText(_translate("qDialog_save", "Да"))
+        self.pushButton_no.setText(_translate("qDialog_save", "Нет"))
+        self.label_password.setText(_translate("qDialog_save", "Пароль"))
+        self.lineEdit_password.setPlaceholderText(_translate("qDialog_save", " Введите новый пароль"))
+        self.pushButton_confirm.setText(_translate("qDialog_save", "Потвердить"))
 

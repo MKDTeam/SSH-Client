@@ -1,5 +1,0 @@
-host = localhost
-user = Dmitry
-secret = 123321
-port = 22
-terminal_type = xfce4-terminal

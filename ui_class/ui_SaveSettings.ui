@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>qDialog_load</class>
- <widget class="QDialog" name="qDialog_load">
+ <class>qDialog_save</class>
+ <widget class="QDialog" name="qDialog_save">
   <property name="sizePolicy">
    <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
     <horstretch>0</horstretch>
@@ -22,14 +22,14 @@
       </font>
      </property>
      <property name="text">
-      <string>Обнаруженны сохраненные настройки.</string>
+      <string>Создан новый набор настроек.</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLabel" name="label_subtitle">
      <property name="text">
-      <string>Желаете загрузить их?</string>
+      <string>Желаете сохранить их?</string>
      </property>
     </widget>
    </item>
@@ -67,6 +67,9 @@
          <widget class="QLineEdit" name="lineEdit_password">
           <property name="echoMode">
            <enum>QLineEdit::Password</enum>
+          </property>
+          <property name="placeholderText">
+           <string> Введите новый пароль</string>
           </property>
          </widget>
         </item>
@@ -121,7 +124,7 @@
   <connection>
    <sender>pushButton_no</sender>
    <signal>clicked()</signal>
-   <receiver>qDialog_load</receiver>
+   <receiver>qDialog_save</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
